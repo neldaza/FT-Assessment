@@ -6,30 +6,39 @@ const covidURL = "https://disease.sh/v3/covid-19/states"
 
 
 export default function App() {
-  const [states, stateList] = useState(0)
-  const [currentState, newCurrentState] = useState<any>(1)
+  const [states, stateList] = useState<any>(0)
+  const [currentStateId, newCurrentStateId] = useState<any>(1)
 
-  const handleClick = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const targetId = Number(event.target.getAttribute('id'));
-    if (event.target.className === 'state') {
-      if (currentState === targetId) {
-        newCurrentState(null)
+
+  const handleClick = (event: React.MouseEvent<HTMLInputElement>) => {
+    const targetId = Number((event.target as HTMLElement).id);
+    if ((event.target as HTMLElement).className === 'state') {
+      if (currentStateId === targetId) {
+        newCurrentStateId(null)
       } else {
-        newCurrentState(targetId);
+        newCurrentStateId(targetId);
       }
     }
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     axios.get(covidURL).then((response) => {
       stateList(response.data);
     });
-  }, []);
+  });
 
-  if (!states) return null;
+  if (!states) { return null }
 
   return (
-    <div></div>
+    <div className='accordion'>
+      {states.map((state: any) => {
+        return (
+          <React.Fragment key={state.state}>
+            <div>{state.state}</div>
+          </React.Fragment>
+        )
+      })}
+    </div>
   );
 
   }
