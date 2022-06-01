@@ -85,5 +85,6 @@
 @media only screen and (max-device-width: 767px){
   .accordion {
     width: 90%;
+    height: 100vh;
   }
 }
