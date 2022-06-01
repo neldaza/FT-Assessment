@@ -41,7 +41,7 @@ export default function App() {
                 <div className='specific'>
                   <div className="main column state align-items-center justify-space-around" id={state.state} onClick={handleClick}>
                     <h3>{state.state}</h3>
-                    <h4>Cases: {state.cases} </h4>
+                    <h4>Total Cases: {state.cases} </h4>
                     <div className={ `chevron ${currentStateId === state.state ? 'top' : 'bottom'}`}></div>
                   </div>
                 </div>
