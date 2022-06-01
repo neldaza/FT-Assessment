@@ -32,13 +32,27 @@ export default function App() {
 
   return (
     <div className='accordion'>
+      <h1>COVID-19 Statistics State by State</h1>
       {states.map((state: any) => {
         return (
           <React.Fragment key={state.state}>
-            <h3 className='state' id={state.state} onClick={handleClick}>{state.state}</h3>
-            <p className={currentStateId === state.state ? '' : 'hidden'}>
-              {state.cases}
-            </p>
+            <div className="row state align-items-center justify-space-around" id={state.state} onClick={handleClick}>
+              <h3>{state.state}</h3>
+              <h4>Cases: {state.cases} </h4>
+            </div>
+            <div className={`state ${currentStateId === state.state ? '' : 'hidden'}`}>
+              <div className='specific-stats'>
+                <p>Cases Today: {state.todayCases}</p>
+                <p>Deaths Today: {state.todayDeaths}</p>
+                <p>Total Deaths: {state.deaths}</p>
+                <p>Active Cases: {state.active}</p>
+                <p>Cases per One Million: {state.casesPerOneMillion}</p>
+                <p>Deaths per One Million: {state.deathsPerOneMillion}</p>
+                <p>Tests per One Million: {state.testsPerOneMillion}</p>
+                <p>Total Tests Taken: {state.tests}</p>
+                <p>Population: {state.population}</p>
+              </div>
+            </div>
           </React.Fragment>
         )
       })}
