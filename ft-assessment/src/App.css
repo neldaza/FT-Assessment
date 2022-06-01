@@ -1,0 +1,89 @@
+.hidden {
+  display: none;
+}
+
+#root {
+  font-family: sans-serif;
+  padding: 5px;
+}
+
+
+.state {
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: rgba(60, 64, 67, 0.3) 0 1px 2px 0, rgba(60, 64, 67, 0.15) 0 2px 6px 2px;
+  background-color: #1B7184;
+  color: white;
+}
+
+.main:hover{
+  background-color: #54A1B6;
+  transition: 0.3s ease-in;
+}
+
+
+
+.accordion {
+  list-style-type: none;
+  margin: 0 auto;
+  padding: 0;
+  width: 35%;
+  overflow-y: scroll;
+  height: 75vh;
+
+}
+
+.row {
+  display: flex;
+
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.justify-space-around {
+  justify-content: space-around;
+}
+
+.text-align-center{
+  text-align: center;
+}
+
+.chevron::before {
+  border-style: solid;
+  border-width: 0.25em 0.25em 0 0;
+  content: '';
+  display: inline-block;
+  height: 0.45em;
+  left: 0.15em;
+  position: relative;
+  top: 0.15em;
+  transform: rotate(-45deg);
+  vertical-align: top;
+  width: 0.45em;
+
+}
+
+.chevron.right:before {
+  left: 0;
+  transform: rotate(45deg);
+}
+
+.chevron.bottom:before {
+  top: 0;
+  transform: rotate(135deg);
+}
+
+.chevron.left:before {
+  left: 0.25em;
+  transform: rotate(-135deg);
+}
+
+@media only screen and (max-device-width: 767px){
+  .accordion {
+    width: 90%;
+  }
+}
