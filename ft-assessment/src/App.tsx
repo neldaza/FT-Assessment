@@ -10,16 +10,17 @@ export default function App() {
   const [currentStateId, newCurrentStateId] = useState<any>(1)
 
 
-  const handleClick = (event: React.MouseEvent<HTMLInputElement>) => {
-    const targetId = Number((event.target as HTMLElement).id);
-    if ((event.target as HTMLElement).className === 'state') {
-      if (currentStateId === targetId) {
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    event.preventDefault()
+    const target = event.currentTarget.id;
+    if (currentStateId === target) {
         newCurrentStateId(null)
       } else {
-        newCurrentStateId(targetId);
+        newCurrentStateId(target);
       }
     }
-  }
+
+
 
   useEffect(() => {
     axios.get(covidURL).then((response) => {
@@ -34,7 +35,10 @@ export default function App() {
       {states.map((state: any) => {
         return (
           <React.Fragment key={state.state}>
-            <div>{state.state}</div>
+            <h3 className='state' id={state.state} onClick={handleClick}>{state.state}</h3>
+            <p className={currentStateId === state.state ? '' : 'hidden'}>
+              {state.cases}
+            </p>
           </React.Fragment>
         )
       })}
